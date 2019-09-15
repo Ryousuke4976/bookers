@@ -1,5 +1,24 @@
 <h1>Books</h1>
 
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Body</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @bookers.each do |booker| %>
+      <tr>
+        <td><%= booker.title %></td>
+        <td><%= booker.body %></td>
+        <td><%= link_to "Show", booker_path(booker.id)%></td>
+        <td><%= link_to "Edit", edit_booker_path(booker.id) %></td>
+        <td><%= link_to "Destroy", booker_path(booker.id), method: :delete, "data-confirm" => "Are You Sure" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 <h2>New book</h2>
 <%= form_for(@booker) do |f| %>
