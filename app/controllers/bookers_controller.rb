@@ -16,15 +16,30 @@ class BookersController < ApplicationController
   end
 
   def create
-    booker = Booker.new(booker_params)
-    booker.save
-    redirect_to booker_path(booker)
+    @booker = Booker.new(booker_params)
+    if @booker.save
+      flash[:notice] = "Successfully create!"
+      redirect_to booker_path(@booker.id)
+    else
+      @bookers = Booker.all
+      render 'index'
+    end
   end
 
   def update
+    @booker = Booker.find(params[:id])
+    if @booker.update(booker_params)
+      flash[:notice] = "Successfully update!"
+      redirect_to booker_path(@booker.id)
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
     booker = Booker.find(params[:id])
-    booker.update(booker_params)
-    redirect_to booker_path(booker)
+    booker.delete
+    redirect_to bookers_path
   end
 
   private

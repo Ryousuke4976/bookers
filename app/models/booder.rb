@@ -1,2 +1,0 @@
-class Booder < ApplicationRecord
-end
