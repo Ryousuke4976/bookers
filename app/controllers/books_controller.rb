@@ -18,7 +18,7 @@ class BooksController < ApplicationController
   def create
     @booker = Book.new(booker_params)
     if @booker.save
-      flash[:notice] = "Successfully create!"
+      flash[:notice] = "successfully create!"
       redirect_to book_path(@booker)
     else
       @bookers = Book.all
@@ -29,7 +29,7 @@ class BooksController < ApplicationController
   def update
     @booker = Book.find(params[:id])
     if @booker.update(booker_params)
-      flash[:notice] = "Successfully update!"
+      flash[:notice] = "successfully update!"
       redirect_to book_path(@booker)
     else
       render 'edit'
